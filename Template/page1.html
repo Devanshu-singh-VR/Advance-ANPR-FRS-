@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Switches and Run Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        #file-input {
+            margin-top: 10px;
+        }
+
+        button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Switches and Run Button</h1>
+
+        <form action="/results" method="post" enctype="multipart/form-data">
+            <label for="video">Video:</label>
+            <input type="checkbox" id="video" name="video"><br>
+
+            <label for="image">Image:</label>
+            <input type="checkbox" id="image" name="image"><br>
+
+            <label for="live-video">Live Video:</label>
+            <input type="checkbox" id="live-video" name="live-video"><br>
+
+            <label for="real-time-enhancer">Real Time Enhancer:</label>
+            <input type="checkbox" id="real-time-enhancer" name="real-time-enhancer"><br>
+
+            <label for="visualization">Visualization:</label>
+            <input type="checkbox" id="visualization" name="visualization"><br>
+
+            <label for="file-input">Select File:</label>
+            <input type="file" id="file-input" name="file-input"><br>
+
+            <button type="submit">Run</button>
+        </form>
+
+        <div class="result" id="result">
+            <!-- Result content will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code will go here
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const resultDiv = document.getElementById('result');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                fetch('/results', {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => response.text())
+                .then(content => {
+                    resultDiv.innerHTML = content;
+                });
+            });
+        });<!DOCTYPE html>
+        <html>
+        <head>
+            <title>Switches and Run Button</title>
+            <style>
+                /* Add your CSS styling here */
+            </style>
+        </head>
+        <body>
+            <h1>Switches and Run Button</h1>
+        
+            <form action="/results" method="post" enctype="multipart/form-data">
+                <label for="video">Video:</label>
+                <input type="checkbox" id="video" name="video"><br>
+        
+                <label for="image">Image:</label>
+                <input type="checkbox" id="image" name="image"><br>
+        
+                <label for="live-video">Live Video:</label>
+                <input type="checkbox" id="live-video" name="live-video"><br>
+        
+                <label for="real-time-enhancer">Real Time Enhancer:</label>
+                <input type="checkbox" id="real-time-enhancer" name="real-time-enhancer"><br>
+        
+                <label for="visualization">Visualization:</label>
+                <input type="checkbox" id="visualization" name="visualization"><br>
+        
+                <input type="file" id="file-input" name="file-input">
+        
+                <button type="submit" onclick="run()">Run</button>
+            </form>
+        
+            <script>
+                // Add the JavaScript code here
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.querySelector('form');
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        fetch('/results', {
+                            method: 'POST',
+                            body: new FormData(form)
+                        })
+                        .then(response => response.text())
+                        .then(content => {
+                            const resultDiv = document.createElement('div');
+                            resultDiv.innerHTML = content;
+                            document.body.appendChild(resultDiv);
+                        });
+                    });
+                });
+        
+                function run() {
+                    // Add your code to execute when the "Run" button is clicked
+                    // For example, you can check the state of the switches and perform actions accordingly
+                    var videoSwitch = document.getElementById("video").checked;
+                    var imageSwitch = document.getElementById("image").checked;
+                    var liveVideoSwitch = document.getElementById("live-video").checked;
+                    var realTimeEnhancerSwitch = document.getElementById("real-time-enhancer").checked;
+                    var visualizationSwitch = document.getElementById("visualization").checked;
+        
+                    // Example actions based on the switches
+                    if (videoSwitch) {
+                        console.log("Video is selected.");
+                    }
+        
+                    if (imageSwitch) {
+                        console.log("Image is selected.");
+                    }
+        
+                    if (liveVideoSwitch) {
+                        console.log("Live Video is selected.");
+                    }
+        
+                    if (realTimeEnhancerSwitch) {
+                        console.log("Real Time Enhancer is selected.");
+                    }
+        
+                    if (visualizationSwitch) {
+                        console.log("Visualization is selected.");
+                    }
+                }
+        
+                function handleFileSelect(event) {
+                    event.preventDefault();
+                    var files = event.target.files || event.dataTransfer.files;
+                    if (files.length > 0) {
+                        // Add your code to handle the selected file
+                        console.log("Selected file:", files[0].name);
+                    }
+                }
+            </script>
+        </body>
+        </html>
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Display</title>
+</head>
+<body>
+    <h1>Image Display</h1>
+    
+    <!-- Display the image -->
+    <img id="result-image" src="{{ url_for('get_image', image_path=image_path) }}" alt="Result Image">
+
+    <!-- Button to go back -->
+    <a href="/">Go Back</a>
+</body>
+</html>
